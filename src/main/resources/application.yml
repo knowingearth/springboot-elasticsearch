@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/luckymoney?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+    tomcat:
+      max-active: 4
+      min-idle: 2
+      initial-size: 2
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #设置数据库引擎  记住必须要使用 MySQL5InnoDBDialect 指定数据库类型对应InnoDB  ;如果使用MySQLDialect 则对应的是MyISAM
+  data:
+    elasticsearch:
+      # es rest api 端口是 9200、应用程序TCP端口是 9300
+      cluster-nodes: 127.0.0.1:9300
+      # es 集群名称
+      cluster-name: elasticsearch
+  mvc:
+    static-path-pattern: /**
+  devtools:
+    livereload:
+      # 热启动
+      enabled: true
+    restart:
+      additional-paths: static/**
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
